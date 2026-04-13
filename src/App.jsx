@@ -42,12 +42,17 @@ function App() {
         <div className="stage-overlay" />
 
         <header className="carousel-header">
-          <div className="header-brand">
-            <img src={collegeLogo} alt={`${collegeName} logo`} className="college-logo" />
+          <div className="header-layout">
+            <div className="header-brand">
+              <img src={collegeLogo} alt={`${collegeName} logo`} className="college-logo" />
+            </div>
+
+            <div className="header-copy">
+              <p className="seminar-label">National Seminar 2026</p>
+              <h1>{seminarTopic}</h1>
+              <p className="college-name">{collegeName}</p>
+            </div>
           </div>
-          <p className="seminar-label">National Seminar 2026</p>
-          <h1>{seminarTopic}</h1>
-          <p className="college-name">{collegeName}</p>
         </header>
 
         <section className="carousel-shell">
@@ -67,7 +72,7 @@ function App() {
               onClick={togglePaused}
               aria-label={isPaused ? "Resume slideshow" : "Pause slideshow"}
             >
-              {isPaused ? "Play" : "Pause"}
+              <span className={`toggle-icon ${isPaused ? "play" : "pause"}`} aria-hidden="true" />
             </button>
           </div>
 

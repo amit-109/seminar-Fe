@@ -58,14 +58,19 @@ a {
   transform: translateX(-50%);
   z-index: 1;
   width: min(1280px, calc(100vw - 2rem));
-  text-align: center;
   pointer-events: none;
+}
+
+.header-layout {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
 }
 
 .header-brand {
   display: flex;
-  justify-content: center;
-  margin-bottom: 0.65rem;
+  justify-content: flex-start;
 }
 
 .college-logo {
@@ -75,6 +80,10 @@ a {
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.88);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.header-copy {
+  text-align: center;
 }
 
 .seminar-label,
@@ -283,17 +292,16 @@ a {
 }
 
 .side-toggle {
-  min-width: 82px;
-  padding: 0.85rem 0.9rem;
+  width: 82px;
+  height: 82px;
+  padding: 0;
   border-radius: 999px;
   border: 1px solid rgba(240, 210, 136, 0.28);
   background: rgba(21, 32, 18, 0.82);
   color: #fff4d7;
   cursor: pointer;
-  font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  display: grid;
+  place-items: center;
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 
@@ -301,6 +309,44 @@ a {
   transform: scale(1.04);
   border-color: rgba(248, 210, 121, 0.75);
   background: rgba(48, 65, 34, 0.94);
+}
+
+.toggle-icon {
+  display: block;
+  position: relative;
+}
+
+.toggle-icon.pause {
+  width: 22px;
+  height: 28px;
+}
+
+.toggle-icon.pause::before,
+.toggle-icon.pause::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 6px;
+  height: 28px;
+  border-radius: 999px;
+  background: #fff4d7;
+}
+
+.toggle-icon.pause::before {
+  left: 2px;
+}
+
+.toggle-icon.pause::after {
+  right: 2px;
+}
+
+.toggle-icon.play {
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-left: 22px solid #fff4d7;
 }
 
 .carousel-dots {
@@ -351,9 +397,25 @@ a {
   }
 
   .side-toggle {
-    min-width: 56px;
-    padding: 0.7rem 0.35rem;
-    font-size: 0.72rem;
+    width: 56px;
+    height: 56px;
+  }
+
+  .toggle-icon.pause {
+    width: 16px;
+    height: 20px;
+  }
+
+  .toggle-icon.pause::before,
+  .toggle-icon.pause::after {
+    width: 5px;
+    height: 20px;
+  }
+
+  .toggle-icon.play {
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 16px;
   }
 
   .speaker-spotlight {
@@ -370,6 +432,15 @@ a {
   .carousel-header {
     top: 0.75rem;
     width: calc(100vw - 1rem);
+  }
+
+  .header-layout {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .header-brand {
+    justify-content: center;
   }
 
   .carousel-header h1 {
@@ -402,9 +473,8 @@ a {
   }
 
   .side-toggle {
-    min-width: 80px;
-    padding: 0.8rem 0.9rem;
-    font-size: 0.72rem;
+    width: 52px;
+    height: 52px;
   }
 
   .speaker-spotlight {
