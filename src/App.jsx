@@ -3,19 +3,25 @@ import { getInitials, speakers } from "./data/speakers"
 
 const autoplayDelay = 5200
 const backgroundImage = "/assets/college-photo.jpg"
+const collegeLogo = "/assets/college-logo.png"
 const seminarTopic = "Latest Trends in Cyber Security and AI/ML"
 const collegeName = "Maharani Lal Kunwari (P.G.) College, Balrampur"
 
 function App() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
 
   useEffect(() => {
+    if (isPaused) {
+      return undefined
+    }
+
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % speakers.length)
     }, autoplayDelay)
 
     return () => window.clearInterval(timer)
-  }, [])
+  }, [isPaused])
 
   const activeSpeaker = speakers[activeIndex]
 
@@ -23,6 +29,7 @@ function App() {
   const showNext = () => setActiveIndex((current) => (current + 1) % speakers.length)
   const showPrevious = () =>
     setActiveIndex((current) => (current - 1 + speakers.length) % speakers.length)
+  const togglePaused = () => setIsPaused((current) => !current)
 
   return (
     <main className="showcase-shell">
@@ -35,20 +42,34 @@ function App() {
         <div className="stage-overlay" />
 
         <header className="carousel-header">
+          <div className="header-brand">
+            <img src={collegeLogo} alt={`${collegeName} logo`} className="college-logo" />
+          </div>
           <p className="seminar-label">National Seminar 2026</p>
           <h1>{seminarTopic}</h1>
           <p className="college-name">{collegeName}</p>
         </header>
 
         <section className="carousel-shell">
-          <button
-            type="button"
-            className="nav-arrow nav-arrow-left"
-            onClick={showPrevious}
-            aria-label="Previous speaker"
-          >
-            &lsaquo;
-          </button>
+          <div className="side-controls side-controls-left">
+            <button
+              type="button"
+              className="nav-arrow nav-arrow-left"
+              onClick={showPrevious}
+              aria-label="Previous speaker"
+            >
+              &lsaquo;
+            </button>
+
+            <button
+              type="button"
+              className="side-toggle"
+              onClick={togglePaused}
+              aria-label={isPaused ? "Resume slideshow" : "Pause slideshow"}
+            >
+              {isPaused ? "Play" : "Pause"}
+            </button>
+          </div>
 
           <article className="speaker-spotlight">
             <div className="spotlight-portrait">
@@ -68,9 +89,6 @@ function App() {
             </div>
 
             <div className="spotlight-content">
-              <p className="slide-count">
-                {String(activeIndex + 1).padStart(2, "0")} / {String(speakers.length).padStart(2, "0")}
-              </p>
               <h2>{activeSpeaker.name}</h2>
               <p className="designation">{activeSpeaker.designation}</p>
               <p className="meta-line">{activeSpeaker.department}</p>

@@ -62,6 +62,21 @@ a {
   pointer-events: none;
 }
 
+.header-brand {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.65rem;
+}
+
+.college-logo {
+  width: clamp(76px, 10vw, 118px);
+  height: auto;
+  padding: 0.45rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
 .seminar-label,
 .college-name {
   margin: 0;
@@ -116,6 +131,12 @@ a {
   margin-top: 7rem;
 }
 
+.side-controls {
+  display: grid;
+  gap: 0.85rem;
+  justify-items: center;
+}
+
 .speaker-spotlight {
   width: 100%;
   display: grid;
@@ -157,17 +178,8 @@ a {
   color: var(--accent-strong);
 }
 
-.slide-count,
 .spotlight-content h2 {
   margin: 0;
-}
-
-.slide-count {
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #f0d288;
-  font-size: 0.92rem;
-  font-weight: 800;
 }
 
 .spotlight-content {
@@ -270,6 +282,27 @@ a {
   background: rgba(48, 65, 34, 0.94);
 }
 
+.side-toggle {
+  min-width: 82px;
+  padding: 0.85rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(240, 210, 136, 0.28);
+  background: rgba(21, 32, 18, 0.82);
+  color: #fff4d7;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.side-toggle:hover {
+  transform: scale(1.04);
+  border-color: rgba(248, 210, 121, 0.75);
+  background: rgba(48, 65, 34, 0.94);
+}
+
 .carousel-dots {
   position: absolute;
   left: 50%;
@@ -317,6 +350,12 @@ a {
     margin-top: 0;
   }
 
+  .side-toggle {
+    min-width: 56px;
+    padding: 0.7rem 0.35rem;
+    font-size: 0.72rem;
+  }
+
   .speaker-spotlight {
     grid-template-columns: 1fr;
     padding: 1rem;
@@ -346,20 +385,26 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .nav-arrow {
+  .side-controls {
     position: absolute;
-    bottom: -3.6rem;
+    left: 0;
+    right: 0;
+    bottom: -3.7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-arrow {
     width: 52px;
     height: 52px;
     font-size: 1.5rem;
   }
 
-  .nav-arrow-left {
-    left: 0;
-  }
-
-  .nav-arrow-right {
-    right: 0;
+  .side-toggle {
+    min-width: 80px;
+    padding: 0.8rem 0.9rem;
+    font-size: 0.72rem;
   }
 
   .speaker-spotlight {
@@ -378,7 +423,7 @@ a {
   }
 
   .carousel-dots {
-    bottom: -3.7rem;
+    bottom: -7rem;
     max-width: calc(100vw - 8rem);
     overflow-x: auto;
   }

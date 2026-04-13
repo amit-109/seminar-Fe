@@ -176,8 +176,6 @@ export const speakers = [
       "Published research on behavioural anomaly detection and hybrid deep learning for rice leaf disease identification",
       "Authored books on Blockchain, Machine Learning and Data Science",
     ],
-    image: "/assets/speaker9.JPG",
-    imagePosition: "center top",
   },
 ]
 
